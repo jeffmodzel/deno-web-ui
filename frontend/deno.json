@@ -1,0 +1,12 @@
+{
+  "name": "@workspace/frontend",
+  "tasks": {
+    "dev": "deno run --allow-net --allow-read main.ts",
+    "start": "deno run --allow-net --allow-read main.ts",
+    "test": "deno test --allow-all test.ts"
+  },
+  "imports": {
+    "@std/http": "jsr:@std/http@1",
+    "@workspace/lib": "../lib/mod.ts"
+  }
+}
