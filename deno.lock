@@ -64,7 +64,24 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/http@^1.0.21"
-    ]
+      "jsr:@std/assert@1"
+    ],
+    "members": {
+      "frontend": {
+        "dependencies": [
+          "jsr:@std/http@1"
+        ]
+      },
+      "lib": {
+        "dependencies": [
+          "jsr:@std/assert@1"
+        ]
+      },
+      "webserver": {
+        "dependencies": [
+          "jsr:@std/http@^1.0.21"
+        ]
+      }
+    }
   }
 }

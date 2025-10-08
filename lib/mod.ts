@@ -2,6 +2,8 @@
  * Shared library for the workspace
  */
 
+export * from './config.ts';
+
 // Utility functions
 export function formatDate(date: Date): string {
   return date.toISOString().split('T')[0];
@@ -24,7 +26,6 @@ export function greet(name: string): string {
   return `Hello, ${capitalize(name)}!`;
 }
 
-export const APP_VERSION = "1.0.0";
 
 export interface User {
   id: string;

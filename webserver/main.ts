@@ -1,19 +1,10 @@
-import { greet, APP_VERSION } from "@workspace/lib";
+import { greet, APP_VERSION, PORT } from "@workspace/lib";
+import { serveDir } from "@std/http/file-server";
 
 const handler = async (req: Request): Promise<Response> => {
     const url = new URL(req.url);
 
-    if (url.pathname === "/") {
-        try {
-            const html = await Deno.readTextFile("../frontend/index.html");
-            return new Response(html, {
-                headers: { "content-type": "text/html" },
-            });
-        } catch (_error) {
-            return new Response("Error loading index.html", { status: 500 });
-        }
-    }
-
+    // API endpoints
     if (url.pathname === "/api") {
         return new Response(JSON.stringify({
             message: greet("API Server"),
@@ -30,8 +21,12 @@ const handler = async (req: Request): Promise<Response> => {
         });
     }
 
-    return new Response("Not Found", { status: 404 });
+    // Serve files from the frontend dist directory
+    return serveDir(req, {
+        fsRoot: "../frontend/dist",
+        urlRoot: "",
+    });
 };
 
 console.log("Web server running on http://localhost:8000");
-Deno.serve({ port: 8000 }, handler);
+Deno.serve({ port: PORT }, handler);

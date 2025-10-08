@@ -1,5 +1,7 @@
 {
   "name": "@workspace/frontend",
+  "version": "1.0.0",
+  "exports":"./mod.ts",
   "tasks": {
     "dev": "deno run --allow-net --allow-read main.ts",
     "start": "deno run --allow-net --allow-read main.ts",
