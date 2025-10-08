@@ -52,8 +52,23 @@
           </tr>
         </tbody>
       </table>
+      
+      <button class="w3-button w3-purple w3-margin-top" onclick="getNames()">Get Names</button>
     </div>
 
     
+    <script>
+      async function getNames() {
+        try {
+          const response = await fetch('/api/names');
+          const data = await response.json();
+          
+          const namesList = data.names.join('\n');
+          alert(`Names from API (${data.count} total):\n\n${namesList}`);
+        } catch (error) {
+          alert('Error fetching names: ' + error.message);
+        }
+      }
+    </script>
   </body>
 </html>
