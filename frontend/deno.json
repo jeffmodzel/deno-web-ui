@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "exports":"./mod.ts",
   "tasks": {
+    "build": "deno task clean_dist && deno task copy_assets && deno task bundle",
+    "bundle":"deno bundle index.html --outdir dist",
+    "clean_dist":"cmd /c del /Q dist\\*.* ",
+    "copy_assets":"cp assets\\*.* dist\\",
     "dev": "deno run --allow-net --allow-read main.ts",
     "start": "deno run --allow-net --allow-read main.ts",
     "test": "deno test --allow-all test.ts"

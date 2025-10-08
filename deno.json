@@ -5,6 +5,7 @@
     "./lib"
   ],
   "tasks": {
+    "build:frontend": "deno task --cwd frontend build",
     "dev": "deno run --watch main.ts",
     "dev:frontend": "deno task --cwd frontend dev",
     "dev:webserver": "deno task --cwd webserver dev",
