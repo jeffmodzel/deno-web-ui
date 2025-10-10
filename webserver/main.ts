@@ -62,5 +62,5 @@ const handler = async (req: Request): Promise<Response> => {
     });
 };
 
-console.log("Web server running on http://localhost:8000");
+console.log(`Web server running on http://localhost:${PORT}`);
 Deno.serve({ port: PORT }, handler);

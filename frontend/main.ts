@@ -1,5 +1,5 @@
 /// <reference lib="dom" />
-import Alpine from 'alpinejs'
+import Alpine from 'alpinejs';
 import { APP_TITLE } from '@workspace/lib';
 
 //
@@ -18,9 +18,8 @@ import { APP_TITLE } from '@workspace/lib';
 document.title = APP_TITLE;
 
 const store = {
-    display: 'value from alpine store',
+  display: 'value from alpine store',
 };
 Alpine.store('clock', store);
 
-
-Alpine.start()
+Alpine.start();
