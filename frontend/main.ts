@@ -19,6 +19,7 @@ import { UserInformationService } from './services/UserInformationService.ts';
 document.title = APP_TITLE;
 
 // W3.CSS Modal
+// TODO update modal to have different modes (info, error)
 const showModal = (msg: string) => {
   document.getElementById('modal')!.style.display = 'block';
   const p = document.getElementById('modalMessage');
@@ -48,19 +49,15 @@ const userInformationFormStore = {
   genders: ['', 'M', 'F'],
   directions: 'Please fill out the form and press Submit. This text comes from an Alpine store.',
   submit: async function () {
-    const service = new UserInformationService();
-    // const response = await service.updatePortfolioValue(this.portfolio, this.value);
-    //
-    // do hard work, get w3 modal working
-    //
-    // showModal(JSON.stringify(response));
     if (this.firstName.length > 0 && this.lastName.length > 0 && this.age > 0 && this.occupation.length > 0 && this.gender.length > 0) {
       globalThis.alert('Data validation passed');
       showModal('Data validation passed');
+      console.log(`submitting form ${this.firstName} | ${this.lastName} | ${this.age} | ${this.occupation} | ${this.gender}`);
+      const service = new UserInformationService();
       service.saveUserInformation({firstName: this.firstName, lastName: this.lastName, age: this.age, occupation: this.occupation, gender: this.gender});
+    } else {
+      console.log('data validation failed.');
     }
-    
-    console.log(`submitting form ${this.firstName} | ${this.lastName} | ${this.age} | ${this.occupation} | ${this.gender}`);
   },
 };
 Alpine.store('userInformationForm', userInformationFormStore);
