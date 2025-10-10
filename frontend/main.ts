@@ -22,4 +22,15 @@ const store = {
 };
 Alpine.store('clock', store);
 
+//
+// Example store that backs the User Information Form
+//
+const userInformationFormStore = {
+  firstName: '...first...',
+  lastName: '...last...',
+  directions: 'Please fill out the form and press Submit. This text comes from an Alpine store.',
+};
+Alpine.store('userInformationForm', userInformationFormStore);
+
+
 Alpine.start();
