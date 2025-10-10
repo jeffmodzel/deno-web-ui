@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frontend App</title>
     <link rel="stylesheet" href="w3.css">
-    <script src="main.ts"></script>
+    <script defer src="main.ts"></script> <!-- defer is being lost after bundling, need to fix--> 
   </head>
   <body class="w3-margin">
-  
     <div class="w3-container w3-blue">
       <h1>This is an app main header</h1>
     </div>
-    
+
+    <div class="w3-medium" x-html="$store.clock.display">static</div>
+
     <div class="w3-container">
       <p>The w3-container class is an important w3.CSS class.</p>
 
@@ -52,23 +53,28 @@
           </tr>
         </tbody>
       </table>
-      
-      <button class="w3-button w3-purple w3-margin-top" onclick="getNames()">Get Names</button>
+
+      <button class="w3-button w3-purple w3-margin-top" onclick="getNames()">
+        Get Names
+      </button>
     </div>
 
-    
     <script>
       async function getNames() {
         try {
-          const response = await fetch('/api/names');
+          const response = await fetch("/api/names");
           const data = await response.json();
-          
-          const namesList = data.names.join('\n');
-          alert(`Names from API (${data.count} total):\n\n${namesList}`);
+
+          const namesList = data.names.join("\n");
+          alert(
+            `Names from API (${data.count} total):\n\n${namesList}`,
+          );
         } catch (error) {
-          alert('Error fetching names: ' + error.message);
+          alert("Error fetching names: " + error.message);
         }
       }
     </script>
+
+    
   </body>
 </html>

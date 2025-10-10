@@ -4,7 +4,7 @@
   "exports":"./mod.ts",
   "tasks": {
     "build": "deno task clean_dist && deno task copy_assets && deno task bundle",
-    "bundle":"deno bundle index.html --outdir dist",
+    "bundle":"deno bundle index.html --outdir dist --platform browser",
     "clean_dist":"cmd /c del /Q dist\\*.* ",
     "copy_assets":"cp assets\\*.* dist\\",
     "dev": "deno run --allow-net --allow-read main.ts",
@@ -13,6 +13,7 @@
   },
   "imports": {
     "@std/http": "jsr:@std/http@1",
-    "@workspace/lib": "../lib/mod.ts"
+    "@workspace/lib": "../lib/mod.ts",
+    "alpinejs": "npm:alpinejs@^3.15.0"
   }
 }
