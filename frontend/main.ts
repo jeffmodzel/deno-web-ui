@@ -1,6 +1,7 @@
 /// <reference lib="dom" />
 import Alpine from 'alpinejs';
 import { APP_TITLE } from '@workspace/lib';
+import { UserInformationService } from './services/UserInformationService.ts';
 
 //
 // This is apparently not required, even though Alpine doc says it is
@@ -17,6 +18,13 @@ import { APP_TITLE } from '@workspace/lib';
 // Set the browser title when the script loads
 document.title = APP_TITLE;
 
+// W3.CSS Modal
+const showModal = (msg: string) => {
+  document.getElementById('modal')!.style.display = 'block';
+  const p = document.getElementById('modalMessage');
+  p!.innerText = msg;
+};
+
 const store = {
   display: 'value from alpine store',
 };
@@ -26,11 +34,35 @@ Alpine.store('clock', store);
 // Example store that backs the User Information Form
 //
 const userInformationFormStore = {
-  firstName: '...first...',
-  lastName: '...last...',
+  firstName: 'Type first name here',
+  lastName: 'Type last name here',
+  age: 0,
+  occupation: '',
+  occupations: [
+    { name: 'Choose your occupation', value: '' },
+    { name: 'Student', value: 'student' },
+    { name: 'Teacher', value: 'teacher' },
+    { name: 'Product Manager', value: 'product manager' },
+  ],
+  gender: '',
+  genders: ['', 'M', 'F'],
   directions: 'Please fill out the form and press Submit. This text comes from an Alpine store.',
+  submit: async function () {
+    const service = new UserInformationService();
+    // const response = await service.updatePortfolioValue(this.portfolio, this.value);
+    //
+    // do hard work, get w3 modal working
+    //
+    // showModal(JSON.stringify(response));
+    if (this.firstName.length > 0 && this.lastName.length > 0 && this.age > 0 && this.occupation.length > 0 && this.gender.length > 0) {
+      globalThis.alert('Data validation passed');
+      showModal('Data validation passed');
+      service.saveUserInformation({firstName: this.firstName, lastName: this.lastName, age: this.age, occupation: this.occupation, gender: this.gender});
+    }
+    
+    console.log(`submitting form ${this.firstName} | ${this.lastName} | ${this.age} | ${this.occupation} | ${this.gender}`);
+  },
 };
 Alpine.store('userInformationForm', userInformationFormStore);
-
 
 Alpine.start();
