@@ -1,80 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frontend App</title>
-    <link rel="stylesheet" href="w3.css">
-    <script defer src="main.ts"></script> <!-- defer is being lost after bundling, need to fix--> 
-  </head>
-  <body class="w3-margin">
-    <div class="w3-container w3-blue">
-      <h1>This is an app main header</h1>
-    </div>
 
-    <div class="w3-medium" x-html="$store.clock.display">static</div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontend App</title>
+  <link rel="stylesheet" href="w3.css">
+  <script defer src="main.ts"></script>
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+</head>
 
-    <div class="w3-container">
-      <p>The w3-container class is an important w3.CSS class.</p>
+<body class="w3-margin">
+  <div class="w3-container w3-blue">
+    <h1>This is an app main header</h1>
+  </div>
 
-      <table class="w3-table-all w3-margin-top">
-        <thead>
-          <tr class="w3-green">
-            <th>Name</th>
-            <th>Position</th>
-            <th>Department</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>John Doe</td>
-            <td>Software Engineer</td>
-            <td>Engineering</td>
-            <td>john.doe@example.com</td>
-          </tr>
-          <tr>
-            <td>Jane Smith</td>
-            <td>Product Manager</td>
-            <td>Product</td>
-            <td>jane.smith@example.com</td>
-          </tr>
-          <tr>
-            <td>Mike Johnson</td>
-            <td>Designer</td>
-            <td>Design</td>
-            <td>mike.johnson@example.com</td>
-          </tr>
-          <tr>
-            <td>Sarah Wilson</td>
-            <td>Data Analyst</td>
-            <td>Analytics</td>
-            <td>sarah.wilson@example.com</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="w3-medium" x-html="$store.clock.display">static</div>
 
-      <button class="w3-button w3-purple w3-margin-top" onclick="getNames()">
-        Get Names
-      </button>
-    </div>
+  <div class="w3-container">
+    <p>The w3-container class is an important w3.CSS class.</p>
 
-    <script>
-      async function getNames() {
-        try {
-          const response = await fetch("/api/names");
-          const data = await response.json();
+    <table class="w3-table-all w3-margin-top">
+      <thead>
+        <tr class="w3-green">
+          <th>Name</th>
+          <th>Position</th>
+          <th>Department</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John Doe</td>
+          <td>Software Engineer</td>
+          <td>Engineering</td>
+          <td>john.doe@example.com</td>
+        </tr>
+        <tr>
+          <td>Jane Smith</td>
+          <td>Product Manager</td>
+          <td>Product</td>
+          <td>jane.smith@example.com</td>
+        </tr>
+        <tr>
+          <td>Mike Johnson</td>
+          <td>Designer</td>
+          <td>Design</td>
+          <td>mike.johnson@example.com</td>
+        </tr>
+        <tr>
+          <td>Sarah Wilson</td>
+          <td>Data Analyst</td>
+          <td>Analytics</td>
+          <td>sarah.wilson@example.com</td>
+        </tr>
+      </tbody>
+    </table>
 
-          const namesList = data.names.join("\n");
-          alert(
-            `Names from API (${data.count} total):\n\n${namesList}`,
-          );
-        } catch (error) {
-          alert("Error fetching names: " + error.message);
-        }
+    <button class="w3-button w3-purple w3-margin-top" onclick="getNames()">
+      Get Names
+    </button>
+  </div>
+
+  <script>
+    async function getNames() {
+      try {
+        const response = await fetch("/api/names");
+        const data = await response.json();
+
+        const namesList = data.names.join("\n");
+        alert(
+          `Names from API (${data.count} total):\n\n${namesList}`,
+        );
+      } catch (error) {
+        alert("Error fetching names: " + error.message);
       }
-    </script>
+    }
+  </script>
 
-    
-  </body>
+
+</body>
+
 </html>
