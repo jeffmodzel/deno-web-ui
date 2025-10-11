@@ -28,8 +28,12 @@ const showModal = (msg: string) => {
 
 const store = {
   display: 'value from alpine store',
+  showModal: function (msg: string) {
+    console.log(`showModal: ${msg}`);
+    showModal(msg);
+  }
 };
-Alpine.store('clock', store);
+Alpine.store('page', store);
 
 //
 // Example store that backs the User Information Form
@@ -44,13 +48,16 @@ const userInformationFormStore = {
     { name: 'Student', value: 'student' },
     { name: 'Teacher', value: 'teacher' },
     { name: 'Product Manager', value: 'product manager' },
+    { name: 'Doctor', value: 'doctor' },
+    { name: 'Lawyer', value: 'lawyer' },
+    { name: 'Other', value: 'other' }    
   ],
   gender: '',
   genders: ['', 'M', 'F'],
   directions: 'Please fill out the form and press Submit. This text comes from an Alpine store.',
   submit: async function () {
     if (this.firstName.length > 0 && this.lastName.length > 0 && this.age > 0 && this.occupation.length > 0 && this.gender.length > 0) {
-      globalThis.alert('Data validation passed');
+      globalThis.alert('Data validation passed'); // use globalThis instead of window
       showModal('Data validation passed');
       console.log(`submitting form ${this.firstName} | ${this.lastName} | ${this.age} | ${this.occupation} | ${this.gender}`);
       const service = new UserInformationService();

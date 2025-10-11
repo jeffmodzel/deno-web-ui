@@ -18,7 +18,7 @@
   </div>
 
   <div class="w3-medium"><a href="w3_example.html">w3_example.html</a></div>
-  <div class="w3-medium" x-html="$store.clock.display">static</div>
+  <div class="w3-medium" x-html="$store.page.display">static</div>
 
   <div class="w3-container">
     <p>The w3-container class is an important w3.CSS class.</p>
@@ -60,9 +60,23 @@
       </tbody>
     </table>
 
-    <button class="w3-button w3-purple w3-margin-top" onclick="getNames()">
-      Get Names
-    </button>
+
+
+    <div class="w3-flex">
+      <div class="w3-padding">
+        <button class="w3-button w3-purple w3-margin-top" onclick="getNames()">
+          Get Names
+        </button>
+      </div>
+      <div class="w3-padding" x-data="$store.page">
+        <button class="w3-button w3-blue w3-margin-top" x-on:click="showModal('Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium tot')">
+          Show Modal
+        </button>
+      </div>
+      <div class="w3-padding w3-green">
+        <h3>3</h3>
+      </div>
+    </div>
   </div>
 
   <div class="w3-container w3-margin-top" x-data="$store.userInformationForm">
@@ -165,12 +179,18 @@
       <header class="w3-container w3-blue w3-text-white">
         <span onclick="document.getElementById('modal').style.display='none'"
           class="w3-button w3-display-topright">&times;</span>
-        <h3>Modal Message</h3>
+        <h3>Info</h3>
       </header>
 
-      <div class="w3-container aws-light-white-2 aws-dark-gray-2-text">
-        <p id="modalMessage">Some text in the Modal..</p>
+      <div class="w3-container w3-white w3-text-gray">
+        <div class="w3-container">
+          <p id="modalMessage">Some text in the Modal..</p>
+        </div>
       </div>
+
+      <footer class="w3-container w3-padding w3-center">
+        <button class="w3-button w3-blue w3-hover-gray w3-round" onclick="document.getElementById('modal').style.display='none'">&nbsp;Ok&nbsp;</button>
+      </footer>
     </div>
   </div>
 
